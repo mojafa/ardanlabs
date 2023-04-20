@@ -49,3 +49,6 @@ func main() {
 		}
 	}
 }
+
+//funcs without return tpes or evn fxns with one or more values
+//go fmt package ot see all verbs and what they do eg %f, %.2f, %v etc.
