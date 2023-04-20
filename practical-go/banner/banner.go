@@ -25,11 +25,20 @@ func main() {
 	for i, r := range s {
 		fmt.Println(i, r)
 	}
-	// 	for i, r := range s {
-	// 		fmt.Println(i, r)
-	// 		if i == 0 {
-	// 			fmt.Printf("%c of type %T\n", r, r)
-	// 			//rune =int32
 
-	// }
+	//strings in GO as a duality between a seq of bytes which is utf-encoding and collection of runes/characters
+
+	// bytes uint8, byte
+	//byte int32 unicode codepoint/character
+	b := s[1]
+	fmt.Printf("%c of type %T\n", b, b)
+	//prints out byte uint8
+
+	for i, r := range s {
+		fmt.Println(i, r)
+		if i == 0 {
+			fmt.Printf("%c of type %T\n", r, r)
+			//prints out a rune (int32)
+		}
+	}
 }
