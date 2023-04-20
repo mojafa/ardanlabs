@@ -48,7 +48,15 @@ func main() {
 			//prints out a rune (int32)
 		}
 	}
+
+	// %#v - a go sntax rep of the value
+	x, y := 1, "1"
+	fmt.Printf("x=%v y=%v\n", x, y)
+	fmt.Printf("x=%#v y=%#v\n", x, y)
+
 }
 
 //funcs without return tpes or evn fxns with one or more values
 //go fmt package ot see all verbs and what they do eg %f, %.2f, %v etc.
+
+// %#v - a go sntax rep of the value
