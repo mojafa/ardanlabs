@@ -10,7 +10,7 @@ func banner(text string, width int) {
 	// padding := (width - len(text)) / 2
 
 	//FIX
-	padding := width - utf8.RuneCountInString(text)
+	padding := (width - utf8.RuneCountInString(text)) / 2
 	for i := 0; i < padding; i++ {
 		fmt.Print(" ")
 	}
