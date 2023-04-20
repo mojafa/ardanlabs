@@ -53,6 +53,7 @@ func main() {
 	x, y := 1, "1"
 	fmt.Printf("x=%v y=%v\n", x, y)
 	fmt.Printf("x=%#v y=%#v\n", x, y)
+	fmt.Printf("%20s!", s)
 
 }
 
@@ -60,3 +61,6 @@ func main() {
 //go fmt package ot see all verbs and what they do eg %f, %.2f, %v etc.
 
 // %#v - a go sntax rep of the value
+//fmt and log are similar
+
+// use #v to debug/log
