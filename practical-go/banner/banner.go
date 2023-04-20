@@ -23,4 +23,15 @@ func main() {
 	g := "Go"
 	fmt.Println("len:", len(g))
 
+	//code point = rune ~=unicode
+	for i, r := range s {
+		fmt.Println(i, r)
+	}
+	// 	for i, r := range s {
+	// 		fmt.Println(i, r)
+	// 		if i == 0 {
+	// 			fmt.Printf("%c of type %T\n", r, r)
+	// 			//rune =int32
+
+	// }
 }
