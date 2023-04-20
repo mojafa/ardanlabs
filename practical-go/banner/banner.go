@@ -1,9 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unicode/utf8"
+)
 
 func banner(text string, width int) {
-	padding := (width - len(text)) / 2
+	// BUG len is in bytes and we need to change it to runes for the unicode emoji we added
+	// padding := (width - len(text)) / 2
+
+	//FIX
+	padding := width - utf8.RuneCountInString(text)
 	for i := 0; i < padding; i++ {
 		fmt.Print(" ")
 	}
