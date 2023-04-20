@@ -15,13 +15,11 @@ func banner(text string, width int) {
 
 func main() {
 	banner("Go", 6)
-	banner("G😄", 6)
-
-	s := "G😄"
-	fmt.Println("len:", len(s))
-
 	g := "Go"
 	fmt.Println("len:", len(g))
+	banner("G☺", 6)
+	s := "G☺"
+	fmt.Println("len:", len(s))
 
 	//code point = rune ~=unicode
 	for i, r := range s {
