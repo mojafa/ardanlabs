@@ -25,12 +25,14 @@ func main() {
 
 	var r Reply
 	dec := json.NewDecoder(resp.Body)
+	//go passes by values which gets copy of r. &r is a pointer to r
 	if err := dec.Decode(&r); err != nil {
 		log.Fatalf("error: can't decode - %s", err)
 	}
 	fmt.Printf("%#v\n", r)
 }
 
+// in orer to help JSON dcoder we can define our own types
 type Reply struct {
 	Name         string
 	Public_Repos int
@@ -58,3 +60,21 @@ JSOn <- io.Writer <- Go: json.Encoder
 Go -> io.Writer -> JSON: json.Encoder
 Go -> []byte -> JSON: json.Marshal
 */
+
+//go has pointers which are used for references
+// pointers in go are used for references
+
+//in go we have a slice
+
+// eg []byte, []int, []int32, ...
+
+//in JSON you can mix types eg ["hi", 7, null]
+//in go you cabn't mix types
+// but you can use []any
+
+// go has auto tagging in sturcts
+// eg
+// type Reply struct {
+// NumRepos int can be  used to rep Public_repos dound in the Github resp, but you could do
+// NumRepos int `json:"public-repos`"
+// }
