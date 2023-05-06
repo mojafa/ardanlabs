@@ -42,7 +42,7 @@ func githubInfo(login string) (string, int, error) {
 
 	var r struct {
 		Name     string
-		NumRepos int `json:"public_repos`
+		NumRepos int `json:"public_repos"`
 	}
 
 	dec := json.NewDecoder(resp.Body)
@@ -52,7 +52,7 @@ func githubInfo(login string) (string, int, error) {
 		return "", 0, err
 	}
 	// fmt.Printf("%#v\n", r)
-	return r.Name, r.Public_Repos, nil
+	return r.Name, r.NumRepos, nil
 }
 
 // curl -i - H 'User-Agent: go' https://api.github.com/users/mojafa
