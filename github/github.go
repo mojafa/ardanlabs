@@ -3,39 +3,56 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
+	"net/url"
 )
 
 func main() {
-	resp, err := http.Get("https://api.github.com/users/mojafa")
+	fmt.Println(githubInfo("mojafa"))
+}
+
+// in orer to help JSON dcoder we can define our own types
+// type Reply struct {
+// 	Name         string
+// 	Public_Repos int
+// }
+
+// githubInfo returns name and no of public repos for login
+func githubInfo(login string) (string, int, error) {
+	// TODO
+	url := "https://api.github.com/users/" + url.PathEscape(login)
+	resp, err := http.Get(url)
 	if err != nil {
-		log.Fatalf("Error: %s", err)
+		return "", 0, err
+		// log.Fatalf("Error: %s", err)
 		// log.Printf(error: %s, err)
 		// os.Exit(1)
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		log.Fatalf("Error: %s", resp.Status)
+		// log.Fatalf("Error: %s", resp.Status)
+		return "", 0, fmt.Errorf("%#v - %s", url, resp.Status)
 	}
 	fmt.Printf("Content-Type: %s\n", resp.Header.Get("Content-Type"))
 	// if _, err := io.Copy(os.Stdout, resp.Body); err != nil {
 	// 	log.Fatalf("error: can't copy - %s", err)
 	// }
 
-	var r Reply
+	// var r Reply  - replaced with anonymous struct
+
+	var r struct {
+		Name     string
+		NumRepos int `json:"public_repos`
+	}
+
 	dec := json.NewDecoder(resp.Body)
 	//go passes by values which gets copy of r. &r is a pointer to r
 	if err := dec.Decode(&r); err != nil {
-		log.Fatalf("error: can't decode - %s", err)
+		// log.Fatalf("error: can't decode - %s", err)
+		return "", 0, err
 	}
-	fmt.Printf("%#v\n", r)
-}
-
-// in orer to help JSON dcoder we can define our own types
-type Reply struct {
-	Name         string
-	Public_Repos int
+	// fmt.Printf("%#v\n", r)
+	return r.Name, r.Public_Repos, nil
 }
 
 // curl -i - H 'User-Agent: go' https://api.github.com/users/mojafa
@@ -71,6 +88,9 @@ Go -> []byte -> JSON: json.Marshal
 //in JSON you can mix types eg ["hi", 7, null]
 //in go you cabn't mix types
 // but you can use []any
+//any (interfce{})
+//[]any
+//any is 1.18+
 
 // go has auto tagging in sturcts
 // eg
